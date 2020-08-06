@@ -51,7 +51,8 @@ module.exports = {
       desiredCapabilities : {
         browserName : 'chrome',
         chromeOptions: {
-          w3c: false
+          w3c: false,
+          args: process.env.CI ? ['--headless'] : []
         }
       },
 
