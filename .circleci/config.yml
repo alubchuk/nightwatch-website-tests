@@ -18,6 +18,8 @@ jobs:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
       - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
+      - run: echo "export CHROMEDRIVER_PATH=$(which chromedriver)" >> $BASH_ENV
       - run: npm run test-chrome
 orbs:
   node: circleci/node@3.0.0
