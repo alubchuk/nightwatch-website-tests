@@ -1,7 +1,5 @@
 const chromedriver = require('chromedriver');
 
-console.log("CHROMEDRIVER_PATH::", process.env.CHROMEDRIVER_PATH);
-
 module.exports = {
   src_folders: ['test'],
   page_objects_path : 'lib/pages',
