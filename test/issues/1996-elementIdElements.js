@@ -1,4 +1,6 @@
 module.exports = {
+  '@disabled': true,
+  
   before(client) {
     this.homepage = client.page.home();
   },
