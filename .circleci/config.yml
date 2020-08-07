@@ -1,9 +1,6 @@
 version: 2.1
 
 executors:
-  machine-executor:
-    machine:
-      image: ubuntu-1604:202004-01
   my-node-executor:
     docker:
       - image: circleci/node:12.16.1-browsers
@@ -11,15 +8,15 @@ executors:
 jobs:
   test-e2e:
     executor: my-node-executor
+    parallelism: 4
     steps:
       - checkout
       - node/install-packages:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
-      # - browser-tools/install-chrome
       - browser-tools/install-chromedriver
       - run: echo "export CHROMEDRIVER_PATH=$(which chromedriver)" >> $BASH_ENV
-      - run: npm run test-chrome
+      - run: RUN_IN_PARALLEL=1 npm run test-chrome
 orbs:
   node: circleci/node@3.0.1
   browser-tools: circleci/browser-tools@1.0.1

@@ -1,6 +1,6 @@
 const chromedriver = require('chromedriver');
 
-module.exports = {
+const config = {
   src_folders: ['test'],
   page_objects_path : 'lib/pages',
   custom_commands_path : 'lib/custom-commands',
@@ -63,3 +63,12 @@ module.exports = {
     }
   }
 };
+
+if (process.env.RUN_IN_PARALLEL) {
+  config.test_workers = {
+    enabled: true,
+    workers: 'auto',
+  };
+}
+
+module.exports = config;
