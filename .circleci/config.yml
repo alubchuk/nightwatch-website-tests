@@ -6,7 +6,7 @@ executors:
       image: ubuntu-1604:202004-01
   my-node-executor:
     docker:
-      - image: circleci/node:12.16.1
+      - image: circleci/node:12.16.1-browsers
 
 jobs:
   test-e2e:
@@ -16,7 +16,7 @@ jobs:
       - node/install-packages:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
-      - browser-tools/install-chrome
+      # - browser-tools/install-chrome
       - browser-tools/install-chromedriver
       - run: echo "export CHROMEDRIVER_PATH=$(which chromedriver)" >> $BASH_ENV
       - run: npm run test-chrome
