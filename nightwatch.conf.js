@@ -51,13 +51,14 @@ module.exports = {
       desiredCapabilities : {
         browserName : 'chrome',
         chromeOptions: {
-          w3c: false
+          w3c: false,
+          args: process.env.CI ? ['--headless'] : []
         }
       },
 
       webdriver: {
         port: 9515,
-        server_path: chromedriver.path
+        server_path: process.env.CHROMEDRIVER_PATH || chromedriver.path
       }
     }
   }
