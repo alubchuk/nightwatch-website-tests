@@ -4,14 +4,13 @@ executors:
   machine-executor:
     machine:
       image: ubuntu-1604:202004-01
-
-machine:
-  node:
-    version: v12.16.1
+  my-node-executor:
+    docker:
+      - image: circleci/node:12.16.1
 
 jobs:
   test-e2e:
-    executor: machine-executor
+    executor: my-node-executor
     steps:
       - checkout
       - node/install-packages:
@@ -22,7 +21,7 @@ jobs:
       - run: echo "export CHROMEDRIVER_PATH=$(which chromedriver)" >> $BASH_ENV
       - run: npm run test-chrome
 orbs:
-  node: circleci/node@3.0.0
+  node: circleci/node@3.0.1
   browser-tools: circleci/browser-tools@1.0.1
 
 workflows:
